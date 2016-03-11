@@ -15,6 +15,8 @@ gem 'hirb'
 gem 'paperclip', '~> 4.3.5'
 gem 'aws-sdk', '< 2.0'
 gem 'masonry-rails', '~> 0.2.4'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 group :development, :test do
      gem 'sqlite3'
 end
