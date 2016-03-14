@@ -17,8 +17,15 @@ gem 'aws-sdk', '< 2.0'
 gem 'masonry-rails', '~> 0.2.4'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'bcrypt'
 group :development, :test do
      gem 'sqlite3'
+     gem 'rspec-rails', '~> 3.4'
+     gem 'database_cleaner'
+end
+
+group :test do
+  gem 'capybara'
 end
 
 group :production do
