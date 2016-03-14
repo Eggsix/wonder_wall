@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
-
+	has_many :comments, as: :commentable
 	has_many :pins, dependent: :destroy
 	has_attached_file :image, styles: { medium: "300x300>", thumb: "20x20>" }, default_url: "/images/:style/missing.png"
 	# Include default devise modules. Others available are:

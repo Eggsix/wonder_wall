@@ -8,8 +8,6 @@
         <p><%= @pin.description %></p>
       </div>
       <div class="panel-body">   
-        <% if current_user && (@pin.user == current_user) %>
-               
             <%= link_to root_path do %>
               <% if @pin.user.image_file_name %>
                 <%= image_tag(@pin.user.image.url(:thumb), id: 'profile_thumb')%>
@@ -24,19 +22,27 @@
               <% end %>
             </strong>
 
-            <span class="right">
-              <%= link_to edit_pin_path(@pin) do %>
-                <span class="glyphicon glyphicon-edit"></span>
-                Edit
-              <% end %>
+            <% if current_user && (@pin.user == current_user) %>
+              <span class="right">
+                <%= link_to edit_pin_path(@pin) do %>
+                  <span class="glyphicon glyphicon-edit"></span>
+                  Edit
+                <% end %>
 
-              <%= link_to @pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <span class="glyphicon glyphicon-trash"></span>
-                Delete
-              <% end %>
-            </span>
-
-        <% end %>     
+                <%= link_to @pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                  Delete
+                <% end %>
+              </span>
+            <% end %> 
+            
+            <div class="panel-footer">
+            <% if current_user %>
+              <%= render  partial: "comments/form", locals: {commentable: @pin} %> 
+            <% end %>    
+              <%= render  partial: "comments/comments", locals: {commentable: @pin} %>
+            </div> 
+        
       </div><!-- panel-body -->
     </div><!-- panel panel-default-->
   </div><!-- col-md-offset-2 col-md-8 -->
