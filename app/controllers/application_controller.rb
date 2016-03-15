@@ -9,4 +9,7 @@ class ApplicationController < ActionController::Base
   	devise_parameter_sanitizer.for(:account_update) << [:image, :first_name, :last_name]
   	devise_parameter_sanitizer.for(:sign_up) << [:image, :first_name, :last_name]
   end
+
+  helper :pins
+
 end

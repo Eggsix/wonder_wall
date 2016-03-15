@@ -8,18 +8,19 @@
         <p><%= @pin.description %></p>
       </div>
       <div class="panel-body">   
-            <%= link_to root_path do %>
+            <%= link_to "/users/#{@pin.user.id}" do %>
               <% if @pin.user.image_file_name %>
                 <%= image_tag(@pin.user.image.url(:thumb), id: 'profile_thumb')%>
               <% else %>
                 <%= image_tag('gender_neutral.png', id: 'profile_thumb') %>
               <% end %>
+              <strong>
+                <%= @pin.user.first_name if @pin.user %>
+              </strong>
             <% end %>
 
             <strong>
-              <%= link_to "/users/#{@pin.user.id}" do %>
                 <%= @pin.user.first_name if @pin.user %>
-              <% end %>
             </strong>
 
             <% if current_user && (@pin.user == current_user) %>
@@ -34,8 +35,7 @@
                   Delete
                 <% end %>
               </span>
-            <% end %> 
-            
+            <% end %>        
             <div class="panel-footer">
             <% if current_user %>
               <%= render  partial: "comments/form", locals: {commentable: @pin} %> 

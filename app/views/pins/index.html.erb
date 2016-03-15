@@ -1,4 +1,8 @@
-<%= render 'pages/home' unless user_signed_in? %>
+<% if !user_signed_in? %>
+  <%= render 'pages/home' %>
+<% else %>
+  <%= render partial: 'carousel' %>
+<% end %>
 
 <div class="right">
    <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
@@ -26,7 +30,7 @@
         
         <strong>
           <%= link_to "/users/#{pin.user.id}" do %>
-            <%= pin.user.first_name if pin.user %>
+            <%= pin.user.full_name if pin.user %>
           <% end %>
         </strong>
 

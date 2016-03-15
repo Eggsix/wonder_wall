@@ -8,7 +8,7 @@
 	            <%= image_tag('gender_neutral.png', id: 'profile_thumb') %>
 	        <% end %>
 	        <strong>
-                <%= comment.user.first_name if comment.user %>:
+                <%= comment.user.full_name if comment.user %>:
             </strong>
         <% end %>
 		<%= comment.comment %>
