@@ -13,8 +13,6 @@
             = image_tag('gender_neutral.png', id: 'profile_thumb')
           %strong
             = @pin.user.first_name if @pin.user
-        %strong
-          = @pin.user.first_name if @pin.user
         - if current_user && (@pin.user == current_user)
           %span.right
             = link_to edit_pin_path(@pin) do
