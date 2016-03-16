@@ -1,0 +1,27 @@
+%nav.navbar.navbar-default
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} SeattleLites
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active= link_to "home", root_path
+        %li= link_to "about", about_path
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            = link_to new_pin_path do
+              %span.glyphicon.glyphicon-plus
+              New Pin
+          %li= link_to "Account Settings", edit_user_registration_path
+          %li= link_to "sign out", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "sign in", new_user_session_path
+    / /.navbar-collapse
+  / /.container-fluid

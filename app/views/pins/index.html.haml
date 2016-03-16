@@ -1,0 +1,33 @@
+- if !user_signed_in?
+  = render 'pages/home'
+- else
+  = render partial: 'carousel'
+.right
+  = will_paginate @pins, renderer: BootstrapPagination::Rails
+#pins.transitions-enabled
+  - @pins.each do |pin|
+    .box.panel.panel-default
+      = link_to image_tag(pin.image.url(:medium)), pin
+      .panel-body
+        = pin.description
+        %br/
+        / change to user profile path later
+        = link_to root_path do
+          - if pin.user.image_file_name
+            = image_tag(pin.user.image.url(:thumb), id: 'profile_thumb')
+          - else
+            = image_tag('gender_neutral.png', id: 'profile_thumb')
+        %strong
+          = link_to "/users/#{pin.user.id}" do
+            = pin.user.full_name if pin.user
+        - if current_user && (pin.user == current_user)
+          .actions
+            = link_to edit_pin_path(pin) do
+              %span.glyphicon.glyphicon-edit
+              Edit
+            = link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do
+              %span.glyphicon.glyphicon-trash
+              Delete
+          / actions
+      / panel-body
+    / box panel panel-default

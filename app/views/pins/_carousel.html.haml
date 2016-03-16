@@ -1,0 +1,28 @@
+#carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+  / Indicators
+  %ol.carousel-indicators
+    - for i in 0...@pins.length do
+      - if i == 0
+        %li.active{"data-slide-to" => i, "data-target" => "#carousel-example-generic"}
+      - else
+        %li{"data-slide-to" => i, "data-target" => "#carousel-example-generic"}
+  / Wrapper for slides
+  .carousel-inner{:role => "listbox"}
+    - @pins.each_with_index do |image, index|
+      - if index == 0
+        .item.active
+          = image_tag(image.image.url)
+          .carousel-caption
+            %h3= image.description
+      - else
+        .item
+          = image_tag(image.image.url)
+          .carousel-caption
+            %h3= image.description
+  / Controls
+  %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+    %span.sr-only Next

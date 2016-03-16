@@ -1,0 +1,11 @@
+.panel.panel-default
+  .panel-heading
+    %h1= @user.full_name
+  .panel-body
+    - if @user.image_file_name
+      = image_tag @user.image.url(:medium)
+    - else
+      = image_tag('gender_neutral.png')
+  .panel-footer
+    = render  partial: "comments/comments", locals: {commentable: @user}
+    = render  partial: "comments/form", locals: {commentable: @user}

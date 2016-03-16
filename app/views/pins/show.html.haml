@@ -1,0 +1,33 @@
+= link_to 'Back', pins_path
+.row
+  .col-md-offset-2.col-md-8
+    .panel.panel-default
+      .panel-heading.center
+        = image_tag @pin.image.url(:medium)
+        %p= @pin.description
+      .panel-body
+        = link_to "/users/#{@pin.user.id}" do
+          - if @pin.user.image_file_name
+            = image_tag(@pin.user.image.url(:thumb), id: 'profile_thumb')
+          - else
+            = image_tag('gender_neutral.png', id: 'profile_thumb')
+          %strong
+            = @pin.user.first_name if @pin.user
+        %strong
+          = @pin.user.first_name if @pin.user
+        - if current_user && (@pin.user == current_user)
+          %span.right
+            = link_to edit_pin_path(@pin) do
+              %span.glyphicon.glyphicon-edit
+              Edit
+            = link_to @pin, method: :delete, data: { confirm: 'Are you sure?' } do
+              %span.glyphicon.glyphicon-trash
+              Delete
+        .panel-footer
+          - if current_user
+            = render  partial: "comments/form", locals: {commentable: @pin}
+          = render  partial: "comments/comments", locals: {commentable: @pin}
+      / panel-body
+    / panel panel-default
+  / col-md-offset-2 col-md-8
+/ row

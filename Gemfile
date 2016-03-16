@@ -11,6 +11,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'devise', '~> 3.5.6'
+gem "haml-rails", "~> 0.9"
 gem 'hirb'
 gem 'paperclip', '~> 4.3.5'
 gem 'aws-sdk', '< 2.0'

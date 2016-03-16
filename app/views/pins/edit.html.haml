@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-heading
+    %h1 Editing pin
+  = render 'form'
+  .panel-footer
+    = link_to 'Show', @pin
+    |
+    \#{link_to 'Back', pins_path}

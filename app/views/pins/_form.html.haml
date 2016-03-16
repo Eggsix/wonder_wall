@@ -1,0 +1,20 @@
+.panel-body
+  = form_for @pin, html: {multipart: true} do |f|
+    - if @pin.errors.any?
+      #error_explanation.alert.alert-info
+        %h2
+          = pluralize(@pin.errors.count, "error")
+          prohibited this pin from being saved:
+        %ul
+          - @pin.errors.full_messages.each do |message|
+            %li= message
+    .form-group
+      = f.label :description
+      %br/
+      = f.text_field :description, class: "form-control"
+    %div{:lass => "form-group"}
+      = f.label :image
+      %br/
+      = f.file_field :image, class: "form-control"
+    .form-group
+      = f.submit "submit", class: "btn btn-primary"
